@@ -2,7 +2,8 @@ NAME = libftprintf.a
 
 CXX = cc
 
-SRC = THE FILES
+SRC = ft_printf.c \
+		ft_handle_args.c 
 
 OBJ = $(SRC:.C=.O)
 CFLAGS = -Wall -Wextra -Werror
