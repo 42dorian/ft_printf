@@ -6,33 +6,29 @@
 /*   By: dabdulla <dabdulla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 20:16:06 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/17 19:53:26 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/20 23:07:41 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// int check_input(const char *format, va_list args)
-// {
-// 	/*
-// 	if != c return expects c
-// 	handle too many args
-// 	handle fewer args
-// 	maybe also \n? or in general escape sequences
-// 	return 0 on error
-// 	*/
-// 	return (1);
-// }
-
 int	handle_args(const char c, va_list args)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (c == 's')
 		count += ft_putstr(va_arg(args, char *));
+	else if (c == 'c')
+		count += ft_putchar(va_arg(args, int));
 	else if (c == '%')
 		count += ft_putchar('%');
+	else if (c == 'i' || c == 'd')
+		count += ft_putnbr((long)va_arg(args, int), 10);
+	else if (c == 'x')
+		count += ft_putnbr(va_arg(args, unsigned int), 16);
+	else if (c == 'X')
+		count += ft_putnbr_caps(va_arg(args, unsigned int), 16);
 	else
 		count += ft_putchar(c);
 	return (count);
@@ -58,17 +54,21 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	return (0);
+	return (len);
 }
 
-int	main(void)
-{
-	void *s;
-	s = NULL;
-	// ft_printf(s, (int)1);
-	// ft_printf("%s%Z\n", s);
-	printf("%p", s);
-
-	// \t \n \v \f \r
-	return (0);
-}
+// int	main(void)
+// {
+// 	// int s = -2147483648;
+// 	unsigned int s = 42;
+// 	int test;
+// 	// ft_printf(s, (int)1);
+// 	// ft_printf("%s%Z\n", s);
+// 	// write(1, "%p\n", 20);
+// 	// printf("%p", s);
+// 	// char buf[sizeof(unsigned long long) * 1 + 1];
+// 	test = ft_printf("%c\n", "test");
+// 	ft_printf("%i\n", test);
+// 	// \t \n \v \f \r
+// 	return (0);
+// }
