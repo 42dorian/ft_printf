@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dabdulla <dabdulla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 20:16:06 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/20 23:07:41 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:59:49 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int	handle_args(const char c, va_list args)
 		count += ft_putnbr(va_arg(args, unsigned int), 16);
 	else if (c == 'X')
 		count += ft_putnbr_caps(va_arg(args, unsigned int), 16);
+	else if (c == 'p')
+		count += ft_print_ptr(va_arg(args, void *));
+	else if (c == 'u')
+		count += ft_printf_uint(va_arg(args, unsigned int), 10);
 	else
 		count += ft_putchar(c);
 	return (count);
@@ -59,16 +63,18 @@ int	ft_printf(const char *format, ...)
 
 // int	main(void)
 // {
+// 	void *test;
+// 	test = "asdf";
 // 	// int s = -2147483648;
-// 	unsigned int s = 42;
-// 	int test;
+// 	//unsigned int s = 42;
 // 	// ft_printf(s, (int)1);
 // 	// ft_printf("%s%Z\n", s);
 // 	// write(1, "%p\n", 20);
 // 	// printf("%p", s);
 // 	// char buf[sizeof(unsigned long long) * 1 + 1];
-// 	test = ft_printf("%c\n", "test");
-// 	ft_printf("%i\n", test);
+// 	//test = ft_printf("%c\n", "test");
+// 	ft_printf("%p\n", test);
+// 	printf("%p\n", test);
 // 	// \t \n \v \f \r
 // 	return (0);
 // }

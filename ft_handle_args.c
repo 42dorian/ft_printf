@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dabdulla <dabdulla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 20:16:55 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/20 23:09:09 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:59:51 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_strlen(char *s)
 
 int	ft_putstr(char *s)
 {
-	return (write(1, s, ft_strlen(s)));
+	return ((int)write(1, s, ft_strlen(s)));
 }
 
 int	ft_putchar(char c)
 {
-	return (write(1, &c, 1));
+	return ((int)write(1, &c, 1));
 }
 
 int	ft_putnbr(long n, int base)
@@ -56,8 +56,8 @@ int	ft_putnbr(long n, int base)
 
 int	ft_putnbr_caps(long n, int base)
 {
-	int 	len;
-	char 	*base_chars;
+	int		len;
+	char	*base_chars;
 
 	len = 0;
 	base_chars = "0123456789ABCDEF";
