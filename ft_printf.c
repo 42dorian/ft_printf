@@ -6,7 +6,7 @@
 /*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 20:16:06 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/21 12:59:49 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:03:40 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	ft_printf(const char *format, ...)
 // 	// printf("%p", s);
 // 	// char buf[sizeof(unsigned long long) * 1 + 1];
 // 	//test = ft_printf("%c\n", "test");
-// 	ft_printf("%p\n", test);
-// 	printf("%p\n", test);
+// 	// ft_printf("%p\n", test);
+// 	printf("#");
 // 	// \t \n \v \f \r
 // 	return (0);
 // }
