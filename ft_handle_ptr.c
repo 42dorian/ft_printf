@@ -6,7 +6,7 @@
 /*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:37:30 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/21 12:59:46 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:40:26 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_printf_uint(unsigned long n, int base)
 {
-	char	buffer[sizeof(unsigned long) * 8];
+	char	buffer[sizeof(long) * 2];
 	char	*base_chars;
 	int		len;
 	int		i;
 
 	i = sizeof(buffer);
-	buffer[i] = '\0';
 	len = 0;
+	buffer[i] = '\0';
 	base_chars = "0123456789abcdef";
 	if (n == 0)
 		buffer[--i] = '0';

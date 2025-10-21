@@ -6,11 +6,27 @@
 /*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 20:16:06 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/21 13:03:40 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:41:14 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	is_valid(const char c)
+{
+	int		i;
+	char	*valid_chars;
+
+	valid_chars = "cspdiuxX%";
+	i = 0;
+	while (valid_chars[i])
+	{
+		if (c == valid_chars[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	handle_args(const char c, va_list args)
 {
@@ -19,22 +35,20 @@ int	handle_args(const char c, va_list args)
 	count = 0;
 	if (c == 's')
 		count += ft_putstr(va_arg(args, char *));
-	else if (c == 'c')
+	if (c == 'c')
 		count += ft_putchar(va_arg(args, int));
-	else if (c == '%')
+	if (c == '%')
 		count += ft_putchar('%');
-	else if (c == 'i' || c == 'd')
+	if (c == 'i' || c == 'd')
 		count += ft_putnbr((long)va_arg(args, int), 10);
-	else if (c == 'x')
+	if (c == 'x')
 		count += ft_putnbr(va_arg(args, unsigned int), 16);
-	else if (c == 'X')
+	if (c == 'X')
 		count += ft_putnbr_caps(va_arg(args, unsigned int), 16);
-	else if (c == 'p')
+	if (c == 'p')
 		count += ft_print_ptr(va_arg(args, void *));
-	else if (c == 'u')
+	if (c == 'u')
 		count += ft_printf_uint(va_arg(args, unsigned int), 10);
-	else
-		count += ft_putchar(c);
 	return (count);
 }
 
@@ -49,9 +63,11 @@ int	ft_printf(const char *format, ...)
 	if (!format)
 		return (0);
 	va_start(args, format);
+	if (format[i] == '%' && !(format[i + 1]))
+		return (-1);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && is_valid(format[i + 1]))
 			len += handle_args(format[++i], args);
 		else
 			len += ft_putchar(format[i]);
@@ -60,21 +76,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
-
-// int	main(void)
-// {
-// 	void *test;
-// 	test = "asdf";
-// 	// int s = -2147483648;
-// 	//unsigned int s = 42;
-// 	// ft_printf(s, (int)1);
-// 	// ft_printf("%s%Z\n", s);
-// 	// write(1, "%p\n", 20);
-// 	// printf("%p", s);
-// 	// char buf[sizeof(unsigned long long) * 1 + 1];
-// 	//test = ft_printf("%c\n", "test");
-// 	// ft_printf("%p\n", test);
-// 	printf("#");
-// 	// \t \n \v \f \r
-// 	return (0);
-// }

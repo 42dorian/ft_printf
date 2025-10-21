@@ -6,7 +6,7 @@
 /*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 20:16:55 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/21 12:59:51 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:40:23 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,19 @@ int	ft_strlen(char *s)
 
 int	ft_putstr(char *s)
 {
-	return ((int)write(1, s, ft_strlen(s)));
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = s;
+	if (!str)
+		str = "(null)";
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }
 
 int	ft_putchar(char c)
@@ -46,11 +58,8 @@ int	ft_putnbr(long n, int base)
 		len++;
 	}
 	if (n >= base)
-	{
-		ft_putnbr(n / base, base);
-		len++;
-	}
-	write(1, &base_chars[n % base], 1);
+		len += ft_putnbr(n / base, base);
+	len += write(1, &base_chars[n % base], 1);
 	return (len);
 }
 
@@ -68,10 +77,7 @@ int	ft_putnbr_caps(long n, int base)
 		len++;
 	}
 	if (n >= base)
-	{
-		ft_putnbr(n / base, base);
-		len++;
-	}
-	write(1, &base_chars[n % base], 1);
+		len += ft_putnbr_caps(n / base, base);
+	len += write(1, &base_chars[n % base], 1);
 	return (len);
 }

@@ -6,17 +6,14 @@
 /*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 23:14:40 by dabdulla          #+#    #+#             */
-/*   Updated: 2025/10/21 12:59:57 by dabdulla         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:41:06 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <limits.h>
 # include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
 
 int	ft_printf(const char *format, ...);
